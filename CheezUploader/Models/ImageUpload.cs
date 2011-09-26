@@ -25,16 +25,16 @@ namespace CheezUploader.Models {
 			if (!_allowedExtensions.Any(e => filename.ToLowerInvariant().EndsWith(e)))
 				throw new FileNotFoundException("Request was made for a file with an invalid extension");
 			Filename = filename;
-			var filePath = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["UploadDirectory"]);
-			var imagePath = ConfigurationManager.AppSettings["UploadDirectory"];
+			var filePath = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings[Constants.UploadDirectory]);
+			var imagePath = ConfigurationManager.AppSettings[Constants.UploadDirectory];
 
 			if (File.Exists(Path.Combine(filePath, filename)))
 				OriginalPath = Path.Combine(imagePath, filename);
 			else
 				throw new FileNotFoundException("Requested file does not exists");
 
-			if (File.Exists(Path.Combine(filePath, "resized", filename)))
-				ResizedPath = Path.Combine(imagePath, "resized", filename);
+			if (File.Exists(Path.Combine(filePath, Constants.ResizedDirectory, filename)))
+				ResizedPath = Path.Combine(imagePath, Constants.ResizedDirectory, filename);
 		}
 
 	}

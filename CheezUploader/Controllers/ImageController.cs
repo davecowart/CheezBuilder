@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using CheezUploader.Models;
 using System.Configuration;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Web.Mvc;
+using CheezUploader.Helpers;
+using CheezUploader.Models;
 
 namespace CheezUploader.Controllers {
 	public class ImageController : Controller {
@@ -18,13 +16,14 @@ namespace CheezUploader.Controllers {
 		[HttpPost]
 		public ActionResult Upload(ImageUpload image) {
 			if (!ModelState.IsValid) return View("Index", image);
-			var path = Server.MapPath(ConfigurationManager.AppSettings["UploadDirectory"]);
+			var path = Server.MapPath(ConfigurationManager.AppSettings[Constants.UploadDirectory]);
 			var filename = Guid.NewGuid().ToString();
 			var extension = Regex.Match(Request.Files[0].FileName, @"\.[a-zA-Z0-9]+$").Value;
 
 			image.Filename = filename + extension;
 			image.OriginalPath = Path.Combine(path, image.Filename);
 			Request.Files[0].SaveAs(image.OriginalPath);
+			ImageHelper.ResizeIfNeeded(image.Filename);
 
 			return RedirectToRoute("ImageDisplay", new { filename = image.Filename });
 		}
