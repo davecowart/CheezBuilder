@@ -36,6 +36,7 @@ namespace CheezUploader.Helpers {
 					using (var graphics = Graphics.FromImage((Image)bitmap)) {
 						graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
 						graphics.DrawImage(image, 0, 0, width, height);
+						Directory.CreateDirectory(Path.Combine(path, Constants.ResizedDirectory));
 						bitmap.Save(Path.Combine(path, Constants.ResizedDirectory, filename));
 					}
 				}

@@ -22,6 +22,7 @@ namespace CheezUploader.Controllers {
 
 			image.Filename = filename + extension;
 			image.OriginalPath = Path.Combine(path, image.Filename);
+			Directory.CreateDirectory(path);
 			Request.Files[0].SaveAs(image.OriginalPath);
 			ImageHelper.ResizeIfNeeded(image.Filename);
 

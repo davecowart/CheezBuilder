@@ -51,4 +51,4 @@ TestResults/
 *.ReSharper.user
 *.csproj.ReSharper
 _Resharper.*/
-Content/Uploads/
+Content/Uploads/*
