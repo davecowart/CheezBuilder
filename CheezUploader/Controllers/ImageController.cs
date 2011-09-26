@@ -8,7 +8,7 @@ using CheezUploader.Models;
 
 namespace CheezUploader.Controllers {
 	public class ImageController : Controller {
-		public ActionResult Index() {
+		public ViewResult Index() {
 			return View(new ImageUpload());
 		}
 
@@ -28,9 +28,8 @@ namespace CheezUploader.Controllers {
 			return RedirectToRoute("ImageDisplay", new { filename = image.Filename });
 		}
 
-		public ActionResult Display(string filename) {
-			var image = new ImageUpload(filename);
-			return View(image);
+		public ViewResult Display(string filename) {
+			return View(new ImageUpload(filename));
 		}
 	}
 }
