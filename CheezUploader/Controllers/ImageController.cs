@@ -9,8 +9,7 @@ using CheezUploader.Models;
 namespace CheezUploader.Controllers {
 	public class ImageController : Controller {
 		public ActionResult Index() {
-			var image = new ImageUpload();
-			return View(image);
+			return View(new ImageUpload());
 		}
 
 		[HttpPost]

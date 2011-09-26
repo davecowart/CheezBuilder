@@ -6,7 +6,8 @@
 
 <h2>Index</h2>
 
-@using (Html.BeginRouteForm("ImageUpload", FormMethod.Post, new { enctype = "multipart/form-data" })) { 
+@using (Html.BeginRouteForm("ImageUpload", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+	@Html.ValidationMessageFor(m => m.Filename, "An image is required")
 	<input type="file" id="Filename" name="Filename" value="@Model.Filename" />
 	<button type="submit">Upload</button>
 }
