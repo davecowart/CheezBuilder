@@ -17,10 +17,13 @@ namespace CheezUploader {
 		public static void RegisterRoutes(RouteCollection routes) {
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+			routes.MapRoute("ImageUpload", "Upload", new { controller = "Image", action = "Upload" });
+			routes.MapRoute("ImageDisplay", "Display", new { controller = "Image", action = "Display" });
+
 			routes.MapRoute(
 					"Default", // Route name
 					"{controller}/{action}/{id}", // URL with parameters
-					new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+					new { controller = "Image", action = "Index", id = UrlParameter.Optional } // Parameter defaults
 			);
 
 		}

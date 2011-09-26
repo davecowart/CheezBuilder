@@ -1,0 +1,12 @@
+﻿@model CheezUploader.Models.ImageUpload
+
+@{
+		ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginRouteForm("ImageUpload", FormMethod.Post, new { enctype = "multipart/form-data" })) { 
+	<input type="file" id="Filename" name="Filename" value="@Model.Filename" />
+	<button type="submit">Upload</button>
+}

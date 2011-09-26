@@ -1,0 +1,9 @@
+﻿@model CheezUploader.Models.ImageUpload
+
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Display</h2>
+
+<img src="@Url.Content(Model.DisplayPath)" alt="Your uploaded image" />
